@@ -41,31 +41,42 @@ public class ShipBehavior : NetworkBehaviour {
         if (!isLocalPlayer) return;
         Movement();
         RotateCamera();
-        CmdFire();
+        Fire();
+    }
+
+    private void Fire()
+    {
+        if (Input.GetMouseButtonDown(1) && cannonCoolDownTime < Time.time)
+        {
+            CmdFireRight();
+        }
+
+        if (Input.GetMouseButtonDown(0)&& cannonCoolDownTime < Time.time)
+        {
+            CmdFireLeft();
+        }
     }
 
     [Command]
-    private void CmdFire()
+    private void CmdFireLeft()
     {
-        if (Input.GetMouseButtonDown(0) && cannonCoolDownTime < Time.time)
+        for (int i = 5; i < 10; i++)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                StartCoroutine(InstantiateCannon(i, Random.Range(0.1f, 0.5f)));
-            }
-
-            cannonCoolDownTime = cannonReloadingTime + Time.time;
+            StartCoroutine(InstantiateCannon(i, Random.Range(0.1f, 0.25f)));
         }
 
-        if (Input.GetMouseButtonDown(1)&& cannonCoolDownTime < Time.time)
-        {
-            for (int i = 5; i < 10; i++)
-            {
-                StartCoroutine(InstantiateCannon(i, Random.Range(0.1f, 0.25f)));
-            }
+        cannonCoolDownTime = cannonReloadingTime + Time.time;
+    }
 
-            cannonCoolDownTime = cannonReloadingTime + Time.time;
+    [Command]
+    private void CmdFireRight()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            StartCoroutine(InstantiateCannon(i, Random.Range(0.1f, 0.5f)));
         }
+
+        cannonCoolDownTime = cannonReloadingTime + Time.time;
     }
 
     private void RotateCamera()
