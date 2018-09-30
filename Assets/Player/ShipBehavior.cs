@@ -18,12 +18,17 @@ public class ShipBehavior : NetworkBehaviour {
     public float cannonPower = 5f;
     private float cannonReloadingTime = 3f;
     private float cannonCoolDownTime;
+    private Renderer rend;
+    private Vector3 colors;
 
-    public override void OnStartClient()
+    public override void OnStartLocalPlayer()
     {
         GameObject.Find("MainCamera").GetComponent<Camera>().enabled = false;
         GetComponentInChildren<Camera>().enabled = true;
         cameraPivot = GameObject.Find("PlayerCameraPivot");
+        rend = GameObject.Find("Sails").GetComponent<Renderer>();
+        colors = new Vector3(Random.value, Random.value, Random.value);
+        rend.material.color = new Color(Random.value, Random.value, Random.value, 1f);
     }
 
     // Use this for initialization
@@ -38,10 +43,11 @@ public class ShipBehavior : NetworkBehaviour {
         if (!isLocalPlayer) return;
         Movement();
         RotateCamera();
-        Fire();
+        CmdFire();
     }
 
-    private void Fire()
+    [Command]
+    private void CmdFire()
     {
         if (Input.GetMouseButtonDown(0) && cannonCoolDownTime < Time.time)
         {
@@ -91,6 +97,8 @@ public class ShipBehavior : NetworkBehaviour {
         GameObject cannon = Instantiate(cannonPref, cannonSpawnPoints[num].transform.position, cannonSpawnPoints[num].transform.rotation);
         cannon.GetComponent<Rigidbody>().velocity = cannon.transform.forward * cannonPower;
         GameObject smoke = Instantiate(smokePref, cannonSpawnPoints[num].transform.position, cannonSpawnPoints[num].transform.rotation);
+        NetworkServer.Spawn(cannon);
+        NetworkServer.Spawn(smoke);
         Destroy(cannon, 2f);
         Destroy(smoke, 3f);
     }
