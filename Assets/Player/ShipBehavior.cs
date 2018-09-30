@@ -31,13 +31,11 @@ public class ShipBehavior : NetworkBehaviour {
         rend.material.color = new Color(Random.value, Random.value, Random.value, 1f);
     }
 
-    // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
         cannonCoolDownTime = Time.time;
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
         if (!isLocalPlayer) return;
