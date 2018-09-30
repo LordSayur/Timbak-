@@ -18,7 +18,7 @@ public class Wave : MonoBehaviour {
         mSize += x;
 
         GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, mSize);
-        if (mSize >= 60)
+        if (mSize >= 100)
         {
             x*=-1;
         }
