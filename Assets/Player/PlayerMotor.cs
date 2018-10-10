@@ -22,12 +22,12 @@ public class PlayerMotor : NetworkBehaviour
         m_cameraPivot = GameObject.Find("PlayerCameraPivot");
     }
 
-    public void MovePlayer(Vector3 input)
+    public void RotatePlayer(Vector3 input)
     {
         m_rigidbody.AddTorque ( 0, input.y * turnSpeed * Time.fixedDeltaTime, 0f);
     }
 
-    public void RotatePlayer(Vector3 input)
+    public void MovePlayer(Vector3 input)
     {
         m_rigidbody.AddForce(transform.right * input.x * moveSpeed * Time.fixedDeltaTime);
     }
