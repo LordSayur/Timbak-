@@ -28,13 +28,16 @@ public class ShipBehavior : NetworkBehaviour {
         cameraPivot = GameObject.Find("PlayerCameraPivot");
         rend = GameObject.Find("Sails").GetComponent<Renderer>();
         colors = new Vector3(Random.value, Random.value, Random.value);
-        rend.material.color = new Color(Random.value, Random.value, Random.value, 1f);
+        rend.material.color = new Color(colors.x, colors.y, colors.z);
     }
 
     void Start () {
         rb = GetComponent<Rigidbody>();
         cannonCoolDownTime = Time.time;
-	}
+        rend = GameObject.Find("Sails").GetComponent<Renderer>();
+        rend.material.color = new Color(colors.x, colors.y, colors.z);
+        if (!isLocalPlayer) return;
+    }
 	
 	void Update ()
     {
@@ -111,4 +114,5 @@ public class ShipBehavior : NetworkBehaviour {
         Destroy(cannon, 2f);
         Destroy(smoke, 3f);
     }
+
 }
