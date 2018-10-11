@@ -14,12 +14,18 @@ public class PlayerMotor : NetworkBehaviour
 
     public float m_cameraTurnSpeed = 1f;
 
-    private GameObject m_cameraPivot;
+    private Transform m_cameraPivot;
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        //m_cameraPivot = GameObject.Find("PlayerCameraPivot");
+        m_cameraPivot = gameObject.transform.Find("PlayerCameraPivot");
+    }
 
     void Start ()
     {
         m_rigidbody = GetComponent<Rigidbody>();
-        m_cameraPivot = GameObject.Find("PlayerCameraPivot");
     }
 
     public void RotatePlayer(Vector3 input)

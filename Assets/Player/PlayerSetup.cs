@@ -28,7 +28,7 @@ public class PlayerSetup : NetworkBehaviour
         base.OnStartLocalPlayer();
 
         //CmdSetupPlayer();
-        UpdateName(m_playerNum);
+        UpdateName(m_playerNum, m_playerColor);
         UpdateColor(m_playerColor);
     }
 
@@ -41,22 +41,22 @@ public class PlayerSetup : NetworkBehaviour
         }
 	}
 
-    private void UpdateColor(Color m_playerColor)
+    private void UpdateColor(Color playerColor)
     {
-        Renderer renderer = GameObject.Find("Sails").GetComponent<Renderer>();
-        if (renderer != null)
+        Renderer rend = gameObject.transform.Find("pirateShip").gameObject.transform.Find("Sails").GetComponent<Renderer>();
+        if (rend != null)
         {
-            renderer.material.color = m_playerColor;
+            rend.material.color = playerColor;
         }
     }
 
-    private void UpdateName(int m_playerNum)
+    private void UpdateName(int playerNum, Color playerColor)
     {
         if (m_playerNameText != null)
         {
             m_playerNameText.enabled = true;
-            m_playerNameText.text = m_basename + " " + m_playerNum.ToString();
-            //m_playerNameText.color = m_playerColor;
+            m_playerNameText.text = m_basename + " " + playerNum.ToString();
+            m_playerNameText.color = new Color(playerColor.r, playerColor.g, playerColor.b, 255f);
         }
     }
 }

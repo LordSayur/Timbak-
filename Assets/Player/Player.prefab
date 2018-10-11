@@ -816,7 +816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4056127abb3d48c41a2800f09f3faeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_camera: {fileID: 20507354107846662}
 --- !u!114 &114236335174019744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -899,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02806f2bab58654c9354d622503f717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0}
+  m_playerColor: {r: 0.8207547, g: 0, b: 0, a: 0}
   m_basename: Lord
   m_playerNum: 1
   m_playerNameText: {fileID: 114401394744227114}

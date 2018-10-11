@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    public GameObject m_camera;
+    Transform m_camera;
 
 	void Start ()
     {
-        if (m_camera != null)
-        {
-            m_camera = GameObject.Find("PlayerCamera");
-        }
+        m_camera = gameObject.transform.parent.Find("PlayerCameraPivot").gameObject.transform.Find("PlayerCamera");
 	}
 	
 	void Update ()

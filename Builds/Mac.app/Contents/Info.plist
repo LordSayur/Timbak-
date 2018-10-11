@@ -12,7 +12,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Mac</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Unity Player version 2018.2.8f1 (ae1180820377). (c) 2018 Unity Technologies ApS. All rights reserved.</string>
+	<string>Unity Player version 2018.2.10f1 (674aa5a67ed5). (c) 2018 Unity Technologies ApS. All rights reserved.</string>
 	<key>CFBundleIconFile</key>
 	<string>PlayerIcon.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -38,7 +38,7 @@
 	<key>NSPrincipalClass</key>
 	<string>PlayerApplication</string>
 	<key>UnityBuildNumber</key>
-	<string>ae1180820377</string>
+	<string>674aa5a67ed5</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.9.0</string>
 </dict>
