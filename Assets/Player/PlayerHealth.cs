@@ -6,17 +6,39 @@ using UnityEngine.Networking;
 
 public class PlayerHealth : NetworkBehaviour 
 {
+    [SyncVar(hook = "UpdateHealthBar")]
     private float m_currentHealth;
-    public float m_maxHealth = 3f;
+    public float m_maxHealth = 15f;
 
     public RectTransform m_healthBar;
-
+    [SyncVar]
     public bool m_isDead = false;
 
 	void Start () 
     {
-		
-	}
+        Reset();
+        //Debug.Log(m_currentHealth);
+        //StartCoroutine("CountDown");
+
+    }
+
+    IEnumerator CountDown()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log(m_currentHealth);
+        Damage(1f);
+        UpdateHealthBar(m_currentHealth);
+
+        yield return new WaitForSeconds(1f);
+        Debug.Log(m_currentHealth);
+        Damage(1f);
+        UpdateHealthBar(m_currentHealth);
+
+        yield return new WaitForSeconds(1f);
+        Debug.Log(m_currentHealth);
+        Damage(1f);
+        UpdateHealthBar(m_currentHealth);
+    }
 
     public void UpdateHealthBar (float value)
     {
@@ -57,7 +79,7 @@ public class PlayerHealth : NetworkBehaviour
             canvas.enabled = state;
         }
 
-        foreach (MeshRenderer rend in GetComponentsInChildren<MeshRenderer>())
+        foreach (Renderer rend in GetComponentsInChildren<Renderer>())
         {
             rend.enabled = state;
         }
