@@ -40,6 +40,7 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
+        m_playerShoot.Fire();
         m_playerMotor.RotateCamera();
 	}
 
