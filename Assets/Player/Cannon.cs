@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public List<string> m_collideTags;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        CheckCollision(collision);
+
+        if (m_collideTags.Contains(collision.gameObject.tag))
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void CheckCollision(Collision collision)
+    {
+        throw new NotImplementedException();
+    }
 }
